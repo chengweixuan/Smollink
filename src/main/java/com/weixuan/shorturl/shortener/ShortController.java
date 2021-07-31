@@ -22,4 +22,14 @@ public class ShortController {
         return shortService.getURLs();
     }
 
+    @PostMapping("/getEncodedNumber")
+    public String getEncodedNumber(@RequestParam long number) {
+        return shortService.getEncodedId(number);
+    }
+
+    @PostMapping("/getDecodedNumber")
+    public long getDecodedNumber(@RequestParam String code) {
+        return shortService.getDecodedId(code);
+    }
+
 }
