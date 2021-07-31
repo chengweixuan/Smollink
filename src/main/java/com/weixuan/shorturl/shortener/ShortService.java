@@ -7,20 +7,19 @@ import org.springframework.stereotype.Service;
 
 import org.apache.commons.codec.binary.Base64;
 
+import javax.persistence.EntityNotFoundException;
 import java.math.BigInteger;
 import java.util.List;
 
 @Service
 public class ShortService {
 
-    private final URLRepository urlRepository;
+    @Autowired
+    private  URLRepository urlRepository;
 
     private static final String base56 = "23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
     private static final long base = base56.length();
 
-    public ShortService(URLRepository urlRepository) {
-        this.urlRepository = urlRepository;
-    }
 
     public String getShortenURL(String url) {
         Url newUrl = new Url();
@@ -29,6 +28,14 @@ public class ShortService {
         long id = savedUrl.getId();
 
         return getEncodedId(id);
+    }
+
+    public String getLongURL(String code) {
+        long id = getDecodedId(code);
+
+        Url originalUrl = urlRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No URL with this code: " + code));
+
+        return originalUrl.getLongUrl();
     }
 
     public List<Url> getURLs() {
@@ -56,7 +63,7 @@ public class ShortService {
         return i / base;
     }
 
-    public static long getDecodedId(String id) {
+    public long getDecodedId(String id) {
         return toBase10(new StringBuilder(id).reverse().toString().toCharArray());
     }
 

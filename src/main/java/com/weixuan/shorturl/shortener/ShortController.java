@@ -17,6 +17,11 @@ public class ShortController {
         return shortService.getShortenURL(url);
     }
 
+    @PostMapping("/getURL")
+    public String getLongURL(@RequestParam String code) {
+        return shortService.getLongURL(code);
+    }
+
     @GetMapping("/getURLs")
     public List<Url> getURLs() {
         return shortService.getURLs();
