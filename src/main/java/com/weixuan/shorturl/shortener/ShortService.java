@@ -10,15 +10,32 @@ import java.util.List;
 @Service
 public class ShortService {
 
-    @Autowired
-    private URLRepository URLRepository;
+    private final URLRepository urlRepository;
+
+    public ShortService(URLRepository urlRepository) {
+        this.urlRepository = urlRepository;
+    }
 
     public String getShortenURL(String url) {
-        return "short url";
+        Url newUrl = new Url();
+        newUrl.setLongUrl(url);
+        urlRepository.save(newUrl);
+        long id = 5;
+
+        return url;
     }
 
     public List<Url> getURLs() {
-        return URLRepository.findAll();
+        return urlRepository.findAll();
+    }
+
+    private String encodeUrl(String url) {
+        Url newUrl = new Url();
+        newUrl.setLongUrl(url);
+        Url savedUrl = urlRepository.save(newUrl);
+        long id = savedUrl.getId();
+
+        return Long.toString(id);
     }
 
 }
