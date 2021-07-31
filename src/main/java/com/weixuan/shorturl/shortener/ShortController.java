@@ -1,10 +1,10 @@
 package com.weixuan.shorturl.shortener;
 
+import com.weixuan.shorturl.repository.Url;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ShortController {
@@ -15,6 +15,11 @@ public class ShortController {
     @PostMapping("/shortenURL")
     public String getShortenURL(@RequestParam String url) {
         return shortService.getShortenURL(url);
+    }
+
+    @GetMapping("/getURLs")
+    public List<Url> getURLs() {
+        return shortService.getURLs();
     }
 
 }
