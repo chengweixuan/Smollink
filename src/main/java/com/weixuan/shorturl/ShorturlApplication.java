@@ -9,8 +9,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import org.springframework.web.reactive.function.client.WebClient;
-
 
 
 import java.util.Collections;
@@ -19,10 +17,6 @@ import java.util.Collections;
 @EnableSwagger2
 public class ShorturlApplication {
 
-	@Bean
-	public WebClient.Builder getWebClientBuilder() {
-		return WebClient.builder();
-	}
 
 	@Bean
 	public FilterRegistrationBean simpleCORSFilter() {
