@@ -20,26 +20,6 @@ import java.util.Collections;
 @EnableSwagger2
 public class ShorturlApplication {
 
-	@Bean
-	public WebClient.Builder getWebClientBuilder() {
-		return WebClient.builder();
-	}
-
-	@Bean
-	public FilterRegistrationBean simpleCORSFilter() {
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		// *** URL below needs to match the Vue client URL and port ***
-		config.setAllowedOrigins(Collections.singletonList("http://localhost:8070"));
-		config.setAllowedMethods(Collections.singletonList("*"));
-		config.setAllowedHeaders(Collections.singletonList("*"));
-		source.registerCorsConfiguration("/**", config);
-		FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(source));
-		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-		return bean;
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(ShorturlApplication.class, args);
 	}
