@@ -3,6 +3,7 @@ package com.weixuan.shorturl.shortener;
 import com.weixuan.shorturl.repository.URLRepository;
 import com.weixuan.shorturl.repository.Url;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import org.apache.commons.codec.binary.Base64;
@@ -10,6 +11,7 @@ import org.apache.commons.codec.binary.Base64;
 import javax.persistence.EntityNotFoundException;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ShortService {
@@ -17,17 +19,59 @@ public class ShortService {
     @Autowired
     private  URLRepository urlRepository;
 
-    private static final String base56 = "23456789abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
-    private static final long base = base56.length();
+    private static final String base62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final long base = base62.length();
+
+    private long probe = 0;
 
 
     public String getShortenURL(String url) {
         Url newUrl = new Url();
+
+        Random random = new Random();
+        long index = random.nextInt(916132832 - 1);
+        if (urlRepository.existsById(index)) {
+            boolean isSaved = false;
+            while (!isSaved) {
+                if (urlRepository.existsById(probe)) {
+                    probe++;
+                } else {
+                    isSaved = true;
+                }
+            }
+            index = probe;
+        }
+
+        newUrl.setId(index);
         newUrl.setLongUrl(url);
         Url savedUrl = urlRepository.save(newUrl);
         long id = savedUrl.getId();
 
         return getEncodedId(id);
+    }
+
+    public String getCustomURL(String url, String custom) {
+        Url newUrl = new Url();
+        long index = getDecodedId(custom);
+
+        if (custom.length() > 5) {
+            return "invalid";
+        }
+
+        if (urlRepository.existsById(index)) {
+            return "exists";
+        }
+
+        if (index >= 0 && index < 916132832) {
+            newUrl.setId(index);
+            newUrl.setLongUrl(url);
+            Url savedUrl = urlRepository.save(newUrl);
+            long id = savedUrl.getId();
+
+            return getEncodedId(id);
+        }
+
+        return "invalid";
     }
 
     public String getLongURL(String code) {
@@ -46,7 +90,7 @@ public class ShortService {
         StringBuilder sb = new StringBuilder("");
 
         if (id == 0) {
-            return Character.toString(base56.charAt(0));
+            return Character.toString(base62.charAt(0));
         }
 
         while (id > 0) {
@@ -58,7 +102,7 @@ public class ShortService {
 
     private static long fromBase10(long i, final StringBuilder sb) {
         long temp = i % base;
-        sb.append(base56.charAt((int)temp));
+        sb.append(base62.charAt((int)temp));
 
         return i / base;
     }
@@ -70,7 +114,7 @@ public class ShortService {
     private static long toBase10(char[] chars) {
         long n = 0;
         for (int i = chars.length - 1; i >= 0; i--) {
-            n += toBase10(base56.indexOf(chars[i]), i);
+            n += toBase10(base62.indexOf(chars[i]), i);
         }
 
         return n;

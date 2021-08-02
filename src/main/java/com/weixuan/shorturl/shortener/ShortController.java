@@ -37,4 +37,9 @@ public class ShortController {
         return shortService.getDecodedId(code);
     }
 
+    @PostMapping("/getCustomURL")
+    public String getCustomURL(@RequestParam String url, @RequestParam String custom) {
+        return shortService.getCustomURL(url, custom);
+    }
+
 }
