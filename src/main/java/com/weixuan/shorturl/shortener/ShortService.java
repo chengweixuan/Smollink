@@ -3,13 +3,9 @@ package com.weixuan.shorturl.shortener;
 import com.weixuan.shorturl.repository.URLRepository;
 import com.weixuan.shorturl.repository.Url;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import org.apache.commons.codec.binary.Base64;
-
 import javax.persistence.EntityNotFoundException;
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Random;
 
