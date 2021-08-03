@@ -13,9 +13,11 @@
 
 This repository contains the Java Spring Boot Web Application that runs the RESTFUL backend API for Smollink.  
 A mySQL database is used to store converted URLs.  
-This Spring Boot Backend is deployed live at:  https://smollink-heroku.herokuapp.com/  
 
-The repository for the frontend component is found at: https://github.com/chengweixuan/smollink-front/
+This Spring Boot Backend is deployed live at:  https://smollink-heroku.herokuapp.com/  
+Endpoints for backend can be viewed [here](https://smollink-heroku.herokuapp.com/swagger-ui.html#/short-controller).
+
+Repository for the frontend component is found at: https://github.com/chengweixuan/smollink-front/
 
 
 ### Local Set Up
@@ -29,7 +31,7 @@ The repository for the frontend component is found at: https://github.com/chengw
 
 ### About
 
-Made by chengweixuan  
+Made by Cheng Weixuan  
 GitHub: https://github.com/chengweixuan/
 
 
