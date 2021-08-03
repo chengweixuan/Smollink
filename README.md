@@ -6,7 +6,9 @@
 
 * This project is a URL shortening service that allows users to create shortened URLs from any URL to be used or shared.   
 * Users can create their own custom short URLs or allow the system to generate a random one for them.    
-* This project consists of a frontend component developed in Vue.js and a backend component developed in Java.  
+* This project consists of a frontend component developed in Vue.js and a backend component developed in Java. 
+* Frontend component is developed in Vue.js using the Quasar framework.
+* Backend component is devleloped as a Spring Boot application in Java. 
 
 
 ### Description  
