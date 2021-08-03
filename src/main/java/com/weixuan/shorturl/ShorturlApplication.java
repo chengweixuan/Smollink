@@ -12,6 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
+import java.util.Arrays;
 import java.util.Collections;
 
 @SpringBootApplication
@@ -29,7 +30,8 @@ public class ShorturlApplication {
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
 		// *** URL below needs to match the Vue client URL and port ***
-		config.setAllowedOrigins(Collections.singletonList("http://localhost:8070"));
+		config.setAllowedOrigins(Arrays.asList("https://smol-link.herokuapp.com", "http://localhost:8070"));
+		// config.setAllowedOrigins(Collections.singletonList("https://smol-link.herokuapp.com"));
 		config.setAllowedMethods(Collections.singletonList("*"));
 		config.setAllowedHeaders(Collections.singletonList("*"));
 		source.registerCorsConfiguration("/**", config);
