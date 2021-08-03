@@ -1,4 +1,4 @@
-#Smollink (URL Shortener)
+# Smollink (URL Shortener)
 
 ## This project is now deployed live at:  https://smol-link.herokuapp.com/
 
