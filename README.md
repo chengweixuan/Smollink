@@ -31,6 +31,10 @@ Repository for the frontend component is found at: https://github.com/chengweixu
 #### Frontend
 * Follow set up instructions at: https://github.com/chengweixuan/smollink-front/
 
+### Unit Testing
+
+Run JUnit tests found in src/test/java/com/weixuan/shorturl/ShorturlApplicationTests.  
+
 ### About
 
 Made by Cheng Weixuan  
