@@ -1,8 +1,8 @@
 # Smollink (URL Shortener)
 
+
 ## This project is now deployed live at:  https://smol-link.herokuapp.com/
 Note: Heroku apps go to sleep after 1 hour of inacitvity. If live link is slow, please visit [this link](https://smollink-heroku.herokuapp.com/ ) to wake backend.  
-&nbsp;  
 &nbsp;  
   
 ### Architecture  
