@@ -16,7 +16,7 @@ Note: Heroku apps go to sleep after 1 hour of inacitvity. If live link is slow, 
 
 ### Description  
 
-This repository contains the Java Spring Boot Web Application that runs the RESTFUL backend API for Smollink.  
+This repository contains the Java Spring Boot Web Application that runs the REST backend API for Smollink.  
 A mySQL database is used to store converted URLs.  
 
 This Spring Boot Backend is deployed live at:  https://smollink-heroku.herokuapp.com/  
