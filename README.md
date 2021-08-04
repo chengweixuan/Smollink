@@ -27,7 +27,6 @@ Repository for the frontend component is found at: https://github.com/chengweixu
 #### Backend
 * Clone this repository and build the maven package  
 * Run jar file
-
 #### Frontend
 * Follow set up instructions at: https://github.com/chengweixuan/smollink-front/
 
